@@ -45,7 +45,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Puerto de Frutos",
               url: "https://puertodefrutos.com",
-              logo: "https://puertodefrutos.com/icons/logo.svg",
+              logo: "https://puertodefrutos.com/icons/logo-full.svg",
               description:
                 "El directorio digital más completo del Puerto de Frutos de Tigre, Buenos Aires.",
               address: {

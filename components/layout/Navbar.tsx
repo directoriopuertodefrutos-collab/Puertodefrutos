@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Heart, Search, MapPin } from "lucide-react";
+import { Menu, X, Heart, Search } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -38,8 +39,14 @@ export function Navbar() {
             className="relative z-10 flex items-center gap-2.5"
             aria-label="Puerto de Frutos - Inicio"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-rio">
-              <MapPin className="h-5 w-5 text-white" />
+            <div className="relative h-9 w-9">
+              <Image
+                src="/icons/logo-full.svg"
+                alt="Puerto de Frutos"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <span
               className={cn(
