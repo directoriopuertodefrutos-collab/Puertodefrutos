@@ -34,7 +34,7 @@ export function HowItWorks() {
   return (
     <section
       id="como-funciona"
-      className="relative overflow-hidden bg-rio py-24 md:py-32"
+      className="relative overflow-hidden bg-rio py-24 md:py-32 scroll-mt-24"
     >
       <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{

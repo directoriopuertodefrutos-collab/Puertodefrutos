@@ -14,7 +14,7 @@ export function CategoriesSection() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <section id="categorias" className="relative overflow-hidden bg-gradient-warm py-24 md:py-32">
+    <section id="categorias" className="relative overflow-hidden bg-gradient-warm py-24 md:py-32 scroll-mt-24">
       <Container>
         <SectionHeading
           label="Categorías"

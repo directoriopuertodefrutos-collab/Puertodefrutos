@@ -23,7 +23,7 @@ export function FeaturedBusinesses({
   const display = featured.slice(0, 6);
 
   return (
-    <section id="destacados" className="py-24 md:py-32">
+    <section id="destacados" className="py-24 md:py-32 scroll-mt-24">
       <Container>
         <SectionHeading
           label="Destacados"

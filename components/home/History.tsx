@@ -6,7 +6,7 @@ import { Parallax } from "@/components/animations/Parallax";
 
 export function History() {
   return (
-    <section id="historia" className="relative overflow-hidden bg-white py-24 md:py-32">
+    <section id="historia" className="relative overflow-hidden bg-white py-24 md:py-32 scroll-mt-24">
       <Parallax speed={0.15}>
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">

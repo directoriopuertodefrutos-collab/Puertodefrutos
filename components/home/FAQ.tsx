@@ -32,7 +32,7 @@ export function FAQSection() {
   });
 
   return (
-    <section id="faq" className="bg-gradient-warm py-24 md:py-32">
+    <section id="faq" className="bg-gradient-warm py-24 md:py-32 scroll-mt-24">
       <Container>
         <SectionHeading
           label="FAQ"

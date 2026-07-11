@@ -7,7 +7,7 @@ export const categories: Category[] = [
     slug: "decoracion",
     description:
       "Decoración de interiores con estilo único. Piezas seleccionadas que transforman cualquier espacio en un hogar.",
-    image: "/images/categories/decoracion.jpg",
+    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
     icon: "Sofa",
     businessCount: 18,
   },
@@ -17,7 +17,7 @@ export const categories: Category[] = [
     slug: "muebles",
     description:
       "Muebles artesanales y de diseño. Madera, mimbre, hierro forjado y materiales nobles.",
-    image: "/images/categories/muebles.jpg",
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
     icon: "Armchair",
     businessCount: 14,
   },
@@ -27,7 +27,7 @@ export const categories: Category[] = [
     slug: "iluminacion",
     description:
       "Lámparas, velas y objetos de luz que crean atmósferas únicas.",
-    image: "/images/categories/iluminacion.jpg",
+    image: "https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=800&q=80",
     icon: "Lightbulb",
     businessCount: 9,
   },
@@ -37,7 +37,7 @@ export const categories: Category[] = [
     slug: "jardin",
     description:
       "Todo para tu jardín, balcón o terraza. Plantas, macetas, muebles de exterior y accesorios.",
-    image: "/images/categories/jardin.jpg",
+    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80",
     icon: "Flower2",
     businessCount: 11,
   },
@@ -47,7 +47,7 @@ export const categories: Category[] = [
     slug: "arte",
     description:
       "Arte contemporáneo, pinturas, esculturas y artesanías de artistas locales.",
-    image: "/images/categories/arte.jpg",
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80",
     icon: "Palette",
     businessCount: 7,
   },
@@ -57,7 +57,7 @@ export const categories: Category[] = [
     slug: "regalos",
     description:
       "Regalos originales para toda ocasión. Encontrá el detalle perfecto.",
-    image: "/images/categories/regalos.jpg",
+    image: "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800&q=80",
     icon: "Gift",
     businessCount: 12,
   },
@@ -67,7 +67,7 @@ export const categories: Category[] = [
     slug: "gastronomia",
     description:
       "Sabores del Delta. Comidas típicas, dulces artesanales, conservas y delicias regionales.",
-    image: "/images/categories/gastronomia.jpg",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
     icon: "UtensilsCrossed",
     businessCount: 15,
   },
@@ -77,7 +77,7 @@ export const categories: Category[] = [
     slug: "textil",
     description:
       "Telas, indumentaria, accesorios de fibras naturales y diseño textil.",
-    image: "/images/categories/textil.jpg",
+    image: "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&q=80",
     icon: "Shirt",
     businessCount: 8,
   },
@@ -87,7 +87,7 @@ export const categories: Category[] = [
     slug: "antiguedades",
     description:
       "Antigüedades y objetos de colección con historia. Muebles, discos, libros y más.",
-    image: "/images/categories/antiguedades.jpg",
+    image: "https://images.unsplash.com/photo-1578922746465-3a80a228f223?w=800&q=80",
     icon: "Clock",
     businessCount: 6,
   },
@@ -97,7 +97,7 @@ export const categories: Category[] = [
     slug: "plantas",
     description:
       "Vivero y plantas nativas del Delta. Especies autóctonas, exóticas y de interior.",
-    image: "/images/categories/plantas.jpg",
+    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
     icon: "Leaf",
     businessCount: 10,
   },

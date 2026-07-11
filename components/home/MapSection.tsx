@@ -8,7 +8,7 @@ import { businesses } from "@/data/businesses";
 
 export function MapSection() {
   return (
-    <section id="mapa" className="bg-white py-24 md:py-32">
+    <section id="mapa" className="bg-white py-24 md:py-32 scroll-mt-24">
       <Container>
         <SectionHeading
           label="Mapa"

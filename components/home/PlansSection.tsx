@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 export function PlansSection() {
   return (
-    <section id="planes" className="bg-white py-24 md:py-32">
+    <section id="planes" className="bg-white py-24 md:py-32 scroll-mt-24">
       <Container>
         <SectionHeading
           label="Planes"
