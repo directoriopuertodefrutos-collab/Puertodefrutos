@@ -21,6 +21,7 @@ import {
   Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { UrlInput, UrlListInput } from "@/components/ui/UrlInput";
 import { cn, slugify } from "@/lib/utils";
 import { businessFormSchema, type BusinessFormValues } from "@/lib/schemas";
 import { categories } from "@/data/categories";
@@ -82,6 +83,7 @@ function defaultForm(): BusinessFormValues {
     tags: [],
     established: "" as unknown as number,
     social: { instagram: "", facebook: "", twitter: "" },
+    videoUrl: "",
   };
 }
 
@@ -116,6 +118,7 @@ function businessToForm(b: Business): BusinessFormValues {
     tags: b.tags || [],
     established: b.established || ("" as unknown as number),
     social: b.social || { instagram: "", facebook: "", twitter: "" },
+    videoUrl: b.videoUrl || "",
   };
 }
 
@@ -146,6 +149,7 @@ function formToBusiness(id: string, f: BusinessFormValues): Business {
         ? undefined
         : (f.established as number),
     social: f.social as Business["social"],
+    videoUrl: (f.videoUrl as string) || undefined,
   };
 }
 
@@ -172,6 +176,7 @@ function generateTS(b: Business): string {
     tags: ${JSON.stringify(b.tags)},
     ${b.established ? `established: ${b.established},` : "// established: undefined,"}
     social: ${JSON.stringify(b.social, null, 6).replace(/\n/g, "\n    ").replace(/}$/, "  }")},
+    ${b.videoUrl ? `videoUrl: "${b.videoUrl}",` : "// videoUrl: undefined,"}
   }`;
 }
 
@@ -192,7 +197,7 @@ export default function AdminPage() {
   const [tableSearch, setTableSearch] = useState("");
   const [expandedSections, setExpandedSections] = useState<
     Record<string, boolean>
-  >({ general: true, schedule: false, contact: false, location: false, products: false, social: false });
+  >({ general: true, schedule: false, contact: false, location: false, products: false, social: false, media: true });
 
   const showToast = useCallback((msg: string) => {
     setToast(msg);
@@ -686,78 +691,47 @@ export default function AdminPage() {
                       </div>
                     </div>
 
-                    <div>
-                      <label className="mb-1.5 block text-xs font-semibold tracking-wider text-carbon/50 uppercase">
-                        Imagen principal (URL)
-                      </label>
-                      <input
-                        value={form.image}
-                        onChange={(e) => updateField("image", e.target.value as never)}
-                        placeholder="https://..."
-                        className="w-full rounded-xl border border-carbon/10 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-rio/30 focus:ring-2 focus:ring-rio/10 placeholder:text-carbon/30 font-mono text-xs"
+                    <div className="rounded-xl border border-rio/10 bg-rio/5 px-4 py-3 text-xs leading-relaxed text-rio/70">
+                      <p>
+                        <strong>Subí las fotos a tu bucket de Cloudflare R2 primero,</strong> después pegá acá la URL pública. Solo se aceptan URLs válidas.
+                      </p>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <UrlInput
+                        label="Imagen principal"
+                        value={form.image || ""}
+                        onChange={(v) => updateField("image", v as never)}
+                        placeholder="https://r2.cloudflarestorage.com/..."
+                        error={errors["image"]}
+                        onClear={() => updateField("image", "" as never)}
                       />
-                      <FieldError error={errors["image"]} />
-                    </div>
-
-                    <div>
-                      <label className="mb-1.5 block text-xs font-semibold tracking-wider text-carbon/50 uppercase">
-                        Galería de imágenes (URLs)
-                      </label>
-                      <div className="flex gap-2 mb-2">
-                        <input
-                          id="new-image-url"
-                          placeholder="https://..."
-                          className="flex-1 rounded-xl border border-carbon/10 bg-white px-4 py-2.5 text-sm outline-none transition-all focus:border-rio/30 focus:ring-2 focus:ring-rio/10 placeholder:text-carbon/30 font-mono text-xs"
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              addImage((e.target as HTMLInputElement).value);
-                              (e.target as HTMLInputElement).value = "";
-                            }
-                          }}
-                        />
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={() => {
-                            const el = document.getElementById("new-image-url") as HTMLInputElement;
-                            if (el) {
-                              addImage(el.value);
-                              el.value = "";
-                            }
-                          }}
-                        >
-                          <Plus className="h-4 w-4" />
-                        </Button>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {form.images.map((url, idx) => (
-                          <span
-                            key={idx}
-                            className="inline-flex items-center gap-1.5 rounded-lg bg-rio/5 px-3 py-1.5 text-xs text-rio"
-                          >
-                            <span className="max-w-[200px] truncate">{url}</span>
-                            <button
-                              onClick={() => removeImage(idx)}
-                              className="text-rio/40 hover:text-red-500"
-                            >
-                              <X className="h-3 w-3" />
-                            </button>
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="mb-1.5 block text-xs font-semibold tracking-wider text-carbon/50 uppercase">
-                        Logo (URL)
-                      </label>
-                      <input
+                      <UrlInput
+                        label="Logo"
                         value={form.logo || ""}
-                        onChange={(e) => updateField("logo", e.target.value as never)}
-                        placeholder="https://..."
-                        className="w-full rounded-xl border border-carbon/10 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-rio/30 focus:ring-2 focus:ring-rio/10 placeholder:text-carbon/30 font-mono text-xs"
+                        onChange={(v) => updateField("logo", v as never)}
+                        placeholder="https://r2.cloudflarestorage.com/..."
+                        onClear={() => updateField("logo", "" as never)}
                       />
                     </div>
+
+                    <UrlListInput
+                      urls={form.images}
+                      onAdd={(url) => addImage(url)}
+                      onRemove={(idx) => removeImage(idx)}
+                      label="Galería de imágenes"
+                      placeholder="https://r2.cloudflarestorage.com/..."
+                    />
+
+                    <UrlInput
+                      label="URL de video (R2) — opcional"
+                      value={form.videoUrl || ""}
+                      onChange={(v) => updateField("videoUrl", v as never)}
+                      placeholder="https://r2.cloudflarestorage.com/..."
+                      type="video"
+                      onClear={() => updateField("videoUrl", "" as never)}
+                    />
+                    <FieldError error={errors["videoUrl"]} />
 
                     <div>
                       <label className="mb-1.5 block text-xs font-semibold tracking-wider text-carbon/50 uppercase">
@@ -1040,11 +1014,10 @@ export default function AdminPage() {
                             />
                           </div>
                           <div>
-                            <input
+                            <UrlInput
                               value={product.image || ""}
-                              onChange={(e) => updateProduct(idx, "image", e.target.value)}
-                              placeholder="URL de imagen"
-                              className="w-full rounded-lg border border-carbon/10 bg-white px-3 py-2 text-sm outline-none focus:border-rio/30 focus:ring-2 focus:ring-rio/10 placeholder:text-carbon/30 font-mono text-xs"
+                              onChange={(v) => updateProduct(idx, "image", v)}
+                              placeholder="https://r2.cloudflarestorage.com/..."
                             />
                           </div>
                         </div>

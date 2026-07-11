@@ -37,7 +37,7 @@ export const productSchema = z.object({
   name: z.string().min(1, "El nombre del producto es obligatorio"),
   description: z.string().min(1, "La descripción es obligatoria"),
   price: z.string().optional().or(z.literal("")),
-  image: z.string().optional().or(z.literal("")),
+  image: z.string().url("Debe ser una URL válida").optional().or(z.literal("")),
   category: z.string().min(1, "La categoría del producto es obligatoria"),
 });
 
@@ -55,9 +55,9 @@ export const businessFormSchema = z.object({
   description: z.string().min(10, "Mínimo 10 caracteres"),
   shortDescription: z.string().min(5, "Mínimo 5 caracteres"),
   story: z.string().min(10, "Mínimo 10 caracteres"),
-  image: z.string().optional().or(z.literal("")),
-  images: z.array(z.string()),
-  logo: z.string().optional().or(z.literal("")),
+  image: z.string().url("Debe ser una URL válida").optional().or(z.literal("")),
+  images: z.array(z.string().url("Debe ser una URL válida")),
+  logo: z.string().url("Debe ser una URL válida").optional().or(z.literal("")),
   rating: z.coerce.number().min(0).max(5),
   reviewCount: z.coerce.number().min(0),
   featured: z.boolean(),
@@ -69,6 +69,7 @@ export const businessFormSchema = z.object({
   tags: z.array(z.string()),
   established: z.coerce.number().optional().or(z.literal("")),
   social: socialSchema,
+  videoUrl: z.string().url("Debe ser una URL válida").optional().or(z.literal("")),
 });
 
 export type BusinessFormValues = z.infer<typeof businessFormSchema>;

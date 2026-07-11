@@ -21,6 +21,7 @@ export interface Business {
   tags: string[];
   established?: number;
   social: Social;
+  videoUrl?: string;
 }
 
 export interface Category {
