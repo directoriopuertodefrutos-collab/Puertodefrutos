@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rio: #0e4d64;
+  --color-delta: #4c956c;
+  --color-arena: #f6f1e9;
+  --color-madera: #a47148;
+  --color-carbon: #161616;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Poppins", system-ui, sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-carbon font-sans;
+  }
+
+  ::selection {
+    @apply bg-rio/20 text-rio;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg;
+  }
+
+  .glass-dark {
+    @apply bg-carbon/10 backdrop-blur-xl border border-white/10 shadow-lg;
+  }
+
+  .gradient-rio {
+    @apply bg-gradient-to-br from-rio to-rio/80;
+  }
+
+  .gradient-delta {
+    @apply bg-gradient-to-br from-delta to-delta/80;
+  }
+
+  .gradient-warm {
+    @apply bg-gradient-to-br from-arena via-white to-arena/50;
+  }
+
+  .shadow-premium {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-premium-lg {
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      0 16px 48px rgba(0, 0, 0, 0.08);
+  }
+
+  .shadow-premium-xl {
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.05),
+      0 24px 80px rgba(0, 0, 0, 0.1);
+  }
+
+  .magnetic {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .image-fade {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
